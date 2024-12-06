@@ -11,9 +11,9 @@
 <nav>
     <div class="container">
         <ul>
-            <li><a href="about">Conócenos</a></li>
+            <li><a href="about?username={{ username }}&email={{ email }}&password={{ password }}">Conócenos</a></li>
             <li><a href="https://docs.opendaylight.org/en/latest/downloads.html">API OpenDaylight</a></li>
-						<li><a href='token?email={{ email }}&password={{ password }}'>{{ username }}</a></li>
+			<li><a href='token?username={{ username }}&email={{ email }}&password={{ password }}'>{{ username }}</a></li>
        </ul>    
     </div>
 </nav>        
@@ -33,10 +33,10 @@
     </div>
 
     <div class="action-buttons">
-			<button onclick="window.location.href='token?email={{ email }}&password={{ password }}'">Obtener token</button>
-        <button onclick="inventarioHosts()">Inventario de hosts</button>
-        <button onclick="inventarioDispositivos()">Inventario de dispositivos</button>
-        <button onclick="trazarRuta()">Trazar ruta</button>
+		<button onclick="window.location.href='token?email={{ email }}&password={{ password }}'">Obtener token</button>
+        <button onclick="window.location.href='inventory?email={{ email }}&username={{ username }}&password={{ password }}'">Inventario de hosts</button>
+        <button onclick="window.location.href='devices?email={{ email }}&username={{ username }}&password={{ password }}'">Inventario de dispositivos</button>
+        <button onclick="window.location.href='tracer?email={{ email }}&username={{ username }}&password={{ password }}'">Trazar ruta</button>
     </div>
 
 </body>
@@ -45,6 +45,4 @@
     <p>Desarrollado por empresas TRM41. © 2024 Todos los derechos reservados</p>
 </footer>
 
-<!--  Importamos el scrip de los botones  -->
-<script src="static/js/buttons.js"></script>
 </html>

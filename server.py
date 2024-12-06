@@ -22,11 +22,21 @@ def dashboard():
     email = request.args.get('email')
     password = request.args.get('password')
 
-    return render_template('dashboard.html', username=username, email=email, password=password)
+    if username == None and email == None and password == None:
+        return redirect('/login')
+    
+    else:
+        return render_template('dashboard.html', username=username, email=email, password=password)
 
 @app.route('/about')
 def about():
-    return render_template('conocenos.html')
+
+    username=request.args.get('username')
+    password=request.args.get('password')
+    email=request.args.get('email')
+
+    return render_template('conocenos.html',username=username, email=email,password=password)
+    
 
 @app.route('/login')
 def login():
@@ -77,18 +87,47 @@ def gentoken():
         return redirect(f'token?email={email}&password={password}')
 
 @app.route('/inventory')
-def inventory():
+def inventory(): 
+
+    username=request.args.get('username')
+    password=request.args.get('password')
+    email=request.args.get('email')
+
     data = requests.get(f'http://{SERVER_ADD}:{SERVER_PORT}/api/inventario/hosts/admin/admin')
    # return render_template('inventario_host.html', data= data.text)
 
-    return render_template('inventario_host.html', data = json.loads(data.text))
+    return render_template('inventario_host.html', data = json.loads(data.text),username=username, password=password, email=email)
 
-@app.route('/net-devices')
+@app.route('/devices')
 def net_devices():
     data = requests.get(f'http://{SERVER_ADD}:{SERVER_PORT}/api/inventario/dispositivos-de-red/admin/admin')
 
     return render_template('inventario_dispositivos_red.html', data = json.loads(data.text))
 
+@app.route('/tracer')
+def tracer():
+    return render_template('formulario.html')
+
+@app.route('/tracer_search', methods = ['POST'])
+def tracer_search():
+    source_node = request.form.get('source_node')
+    destination_node = request.form.get('destination_node') 
+    print(destination_node)
+    print(source_node)
+
+    url = f'http://{SERVER_ADD}:{SERVER_PORT}/api/trazar-post'
+    myobj = {'source_node': source_node, 'destination_node': destination_node}
+
+    req = requests.post(url, data = myobj)
+
+    data = json.loads(req.text)
+    print(data)
+
+    if data['success']:
+        return render_template('rutas.html', data=data)
+    
+    else:
+        return 'Error. Ja!'
 
 @app.route('/auth/', methods=['POST'])
 def auth():
@@ -136,6 +175,9 @@ def signup():
 
     else:
         return redirect('/login')
+    
+
+    
 
 
 if __name__ == '__name__':
