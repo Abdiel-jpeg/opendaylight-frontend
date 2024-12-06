@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Inventario host</title>
+    <link rel="stylesheet" href="/static/css/inventario_host.css">
+    <link rel="icon" href="static/ico/tikect.ico" type="image/x-icon">
+</head>
+
+<nav>
+  <div class="container">
+      <ul>
+          <li><a href="about">Conócenos</a></li>
+          <li><a href="https://docs.opendaylight.org/en/latest/downloads.html">API OpenDaylight</a></li>
+          <li><a href="dashboard">Dashboard</a>
+      </ul>    
+  </div>
+</nav>  
+
+<body>
+	<div>
+		<h1>Configuracion de Usuario</h1>
+
+		<ul>
+			<li>Nombre: {{ nombre }}</li>
+			<li>Apellido: {{ apellido }}</li>
+			<li>Correo: {{ email }}</li>
+			<li>Empresa: {{ company }}</li>
+			<li>Direccion: {{ address }}</li>
+		</ul>
+		
+		<div>
+			<button type='button' id='logout' onClick="window.location.href='/'">Cerrar Sesion</button>
+		</div>
+
+		<div>
+			<p>API Token</p>
+			<input type='text' placeholder='{{ token }}' disabled>
+			<button type='button' id='gentoken'>Generar Token</button>
+		</div>
+	</div>
+</body>
+
+  <footer>
+    <p>Desarrollado por empresas TRM41. © 2024 Todos los derechos reservados</p>
+</footer>
+
+<script>
+	document.getElementById('gentoken').addEventListener('click', (e) => {
+		window.location.href='gentoken?email={{ email }}&password={{ password }}'
+	});
+</script>
+</html>

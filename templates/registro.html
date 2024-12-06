@@ -1,0 +1,56 @@
+<!DOCTYPE html5>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crear Cuenta</title>
+    <link rel="icon" href="static/ico/tikect.ico" type="image/x-icon">
+    <link rel="stylesheet" href="static/css/registro.css">
+</head>
+<body>
+    <div class="create-account-container">
+        <div class="create-account-box">
+            <div class="logo">
+                <img src="static/logo/logo.png" alt="Logo OpenDaylight">
+            </div>
+            <h2>Crea tu cuenta</h2>
+						<form action="/signup" method="post">
+                <div class="input-group">
+                    <label for="nombre">Nombre</label>
+                    <input type="text" id="nombre" name="nombre" required>
+                </div>
+
+                <div class="input-group">
+                    <label for="apellido">Apellido</label>
+                    <input type="text" id="apellido" name="apellido" required>
+                </div>
+
+                <div class="input-group">
+                    <label for="email">Correo electrónico</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+
+                <div class="input-group">
+                    <label for="password">Contraseña</label>
+                    <input type="password" id="password" name="password" required>
+                </div>
+
+                <div class="input-group">
+                    <label for="company">Empresa</label>
+                    <input type="company" id="company" name="company" required>
+                </div>
+
+                <div class="input-group">
+                    <label for="Address">Dirección</label>
+                    <input type="Address" id="Address" name="Address" required>
+                </div>
+
+                <button type="submit" name="Crear_Cuenta" class="create-account-button">Crear cuenta</button>
+            </form>
+            <div class="additional-links">
+                <a href="login">Inicia sesión</a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

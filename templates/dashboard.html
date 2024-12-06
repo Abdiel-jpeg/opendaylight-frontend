@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashborad</title>
+    <link rel="icon" href="static/ico/tikect.ico" type="image/x-icon">
+    <link rel="stylesheet" href="/static/css/dashboard.css">
+</head>
+
+<nav>
+    <div class="container">
+        <ul>
+            <li><a href="about">Conócenos</a></li>
+            <li><a href="https://docs.opendaylight.org/en/latest/downloads.html">API OpenDaylight</a></li>
+						<li><a href='token?email={{ email }}&password={{ password }}'>{{ username }}</a></li>
+       </ul>    
+    </div>
+</nav>        
+
+<body>
+    <div class="image-container">
+        <img src="/static/logo/logo.png" alt="Logo">
+    </div>
+
+    <div class="text-container">
+        <h3> Bienvenido a mi API OpenDaylight</h3>
+    </div>
+
+    <div class="intro">
+        <p>Automatización de redes empresariales mediante OpenDaylight.</p>
+
+    </div>
+
+    <div class="action-buttons">
+			<button onclick="window.location.href='token?email={{ email }}&password={{ password }}'">Obtener token</button>
+        <button onclick="inventarioHosts()">Inventario de hosts</button>
+        <button onclick="inventarioDispositivos()">Inventario de dispositivos</button>
+        <button onclick="trazarRuta()">Trazar ruta</button>
+    </div>
+
+</body>
+
+<footer>
+    <p>Desarrollado por empresas TRM41. © 2024 Todos los derechos reservados</p>
+</footer>
+
+<!--  Importamos el scrip de los botones  -->
+<script src="static/js/buttons.js"></script>
+</html>

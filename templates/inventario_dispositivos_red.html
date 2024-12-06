@@ -1,0 +1,63 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Inventario de Dispositivos de Red</title>
+  <link rel="stylesheet" href="/static/css/inventario_host.css">
+  <link rel="icon" href="static/ico/tikect.ico" type="image/x-icon">
+</head>
+
+<nav>
+  <div class="container">
+      <ul>
+          <li><a href="about">Conócenos</a></li>
+          <li><a href="https://docs.opendaylight.org/en/latest/downloads.html">API OpenDaylight</a></li>
+          <li><a href="dashboard">Dashboard</a></li>
+      </ul>    
+  </div>
+</nav>  
+
+<body>
+  <h1>Información de Dispositivos de Red</h1>
+  <table>
+    <thead>
+      <tr>
+        <th>ID del Nodo</th>
+        <th>Referencia de Inventario</th>
+        <th>Conectores de Terminación</th>
+      </tr>
+    </thead>
+    <tbody id="table-body"></tbody>
+  </table>
+
+  <script>
+    // Simulación de datos JSON desde la API
+		const json = JSON.parse('{{ data | tojson | safe }}')
+
+    // Renderizar JSON en tabla HTML
+    const tableBody = document.getElementById("table-body");
+
+    json["networks-devices"].forEach(device => {
+      const terminationPoints = device["termination-point"]
+        .map(tp => tp["tp-id"])
+        .join(", ");
+
+      const row = `
+        <tr>
+          <td>${device["node-id"]}</td>
+          <td>${device["opendaylight-topology-inventory:inventory-node-ref"]}</td>
+          <td>${terminationPoints}</td>
+        </tr>
+      `;
+
+      tableBody.innerHTML += row;
+    });
+  </script>
+</body>
+
+<footer>
+  <p>Desarrollado por empresas TRM41. © 2024 Todos los derechos reservados</p>
+</footer>
+</html>

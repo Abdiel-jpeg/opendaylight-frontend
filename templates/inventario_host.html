@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Inventario host</title>
+    <link rel="stylesheet" href="/static/css/inventario_host.css">
+    <link rel="icon" href="static/ico/tikect.ico" type="image/x-icon">
+</head>
+
+<nav>
+  <div class="container">
+      <ul>
+          <li><a href="about">Conócenos</a></li>
+          <li><a href="https://docs.opendaylight.org/en/latest/downloads.html">API OpenDaylight</a></li>
+          <li><a href="dashboard">Dashboard</a>
+      </ul>    
+  </div>
+</nav>  
+
+<body>
+  <h1>Información de Hosts</h1>
+  <table>
+    <thead>
+      <tr>
+        <th>ID del Host</th>
+        <th>Dirección IP</th>
+        <th>Dirección MAC</th>
+        <th>Punto Adjunto</th>
+        <th>Activo</th>
+      </tr>
+    </thead>
+    <tbody id="table-body"></tbody>
+  </table>
+
+  <script>
+    // JSON Data
+      const json = JSON.parse('{{ data | tojson | safe }}')
+
+      console.log(json)
+
+      // Render JSON a tabla HTML
+      const tableBody = document.getElementById("table-body");
+
+
+      json.hosts.forEach(host => {
+        const address = host["host-tracker-service:addresses"][0];
+        const attachment = host["host-tracker-service:attachment-points"][0];
+
+        const row = `
+          <tr>
+            <td>${host["host-tracker-service:id"]}</td>
+            <td>${address.ip}</td>
+            <td>${address.mac}</td>
+            <td>${attachment["tp-id"]}</td>
+            <td>${attachment.active ? "Yes" : "No"}</td>
+          </tr>
+        `;
+
+        tableBody.innerHTML += row;
+      });
+  </script>
+</body>
+
+  <footer>
+    <p>Desarrollado por empresas TRM41. © 2024 Todos los derechos reservados</p>
+</footer>
+</html>

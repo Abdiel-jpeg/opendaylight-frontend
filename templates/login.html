@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Iniciar sesión</title>
+    <link rel="icon" href="static/ico/tikect.ico" type="image/x-icon">
+    <link rel="stylesheet" href="static/css/login.css">
+    
+</head>
+<body>
+    <div class="login-container">
+        <div class="login-box">
+            <div class="logo">
+                <img src="static/logo/logo.png" alt="Logo OpenDaylight">
+            </div>
+            <h2>Bienvenido</h2>
+            <form action="/auth/" method="post">
+                <div class="input-group">
+                    <label for="email">Correo electrónico</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                <div class="input-group">
+                    <label for="password">Contraseña</label>
+                    <div class="password-wrapper">
+                        <input type="password" id="password" name="password" required>
+                        <button type="button" id="togglePassword" class="toggle-password">Mostrar</button>
+                    </div>
+                </div>
+                <button type="submit" name="Iniciar_Sesion" id="login-button" class="login-button">Iniciar sesión</button>
+            </form>
+            <div class="additional-links">
+                <a href="account">Crear cuenta</a>
+            </div>
+        </div>
+    </div>
+    <script src="static/js/MostrarContraseña.js"></script>
+    <script src="static/js/login.js"></script>
+
+</body>
+</html>
